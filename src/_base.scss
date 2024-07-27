@@ -3,3 +3,16 @@
     align-items: center;
     justify-content: center;
 }
+
+@mixin background($url, $opacity) {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url($url) no-repeat center center;
+    background-size: cover;
+    opacity: $opacity;
+    z-index: -1;
+}
