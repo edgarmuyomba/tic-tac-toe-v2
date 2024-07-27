@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Timer from '../timer/timer';
 import styles from './styles.module.scss';
-import snoopy from '../../assets/snoopy_thinking.gif';
-import bear from '../../assets/bear_thinking.gif';
+import snoopy from '../../../assets/snoopy_thinking.gif';
+import bear from '../../../assets/bear_thinking.gif';
 
 export default function Header() {
     const [IsX, setIsX] = useState(true);

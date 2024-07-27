@@ -1,0 +1,50 @@
+@use "../../base";
+
+div.container {
+    @include base.basic_flex();
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+
+    .title {
+        font-size: 4.5rem;
+        font-weight: bold;
+        margin-top: 17%;
+    }
+
+    .buttons {
+        @include base.basic_flex();
+        gap: 1rem;
+        margin-top: 1rem;
+    
+        button {
+            width: 7rem;
+            padding: 0.5rem 0;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 1px solid grey;
+            background-color: transparent;
+        }
+
+        button:hover {
+            background-color: whitesmoke;
+        }
+
+    }
+
+    .copy {
+        @include base.basic_flex();
+        margin-top: auto;
+        margin-bottom: 1rem;
+
+        svg {
+            height: 45px;
+        }
+
+        a {
+            font-size: 0.8rem;
+            color: black;
+            text-decoration: none;
+        }
+    }
+}
