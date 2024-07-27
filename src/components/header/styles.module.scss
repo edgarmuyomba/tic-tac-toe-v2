@@ -2,21 +2,24 @@
 
 div.container {
     @include base.basic_flex();
-    height: 25%;
-    justify-content: space-evenly;
+    height: 20%;
 
     div.you, div.opponent {
         @include base.basic_flex();
         flex-direction: column;
         height: 100%;
-        width: 40%;
+        width: 35%;
 
         p.title {
             font-weight: bold;
         }
 
+        div.gif {
+            height: 90%;
+        }
+
         img {
-            height: 100px;
+            height: 100%;
         }
     }
 

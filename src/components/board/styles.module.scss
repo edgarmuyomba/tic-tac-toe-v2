@@ -1,0 +1,16 @@
+@use "../../base";
+
+div.container {
+    height: 80%;
+    border: 2.3px solid black;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    box-shadow: -10px 10px;
+}
+
+div.cell {
+    @include base.basic_flex();
+    border: 3px solid whitesmoke;
+    font-weight: bold;
+    font-size: 4.5rem;
+}

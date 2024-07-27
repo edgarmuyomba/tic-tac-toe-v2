@@ -6,9 +6,11 @@ import bear from '../../assets/bear_thinking.gif';
 
 export default function Header() {
     const [IsX, setIsX] = useState(true);
+    const [YourTurn, setYourTurn] = useState(false);
+
     return (
         <div className={styles.container}>
-            <div className={styles.you}>
+            <div className={styles.you}  style={{ opacity: YourTurn ? 1 : 0.2 }}>
                 {
                     IsX ?
                         (
@@ -34,7 +36,7 @@ export default function Header() {
                 </div>
             </div>
             <Timer />
-            <div className={styles.opponent}>
+            <div className={styles.opponent}  style={{ opacity: YourTurn ? 0.2 : 1 }}>
                 {
                     IsX ?
                         (
