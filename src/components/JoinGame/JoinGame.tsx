@@ -10,7 +10,7 @@ function JoinGame() {
             </div>
             <form action="">
                 <input type="text" pattern="[^\s]{6}" name="game_id" id="game_id" placeholder="Game ID" />
-                {/* <input type="submit" value="Submit" /> */}
+                <input type="submit" value="Submit" />
             </form>
         </div>
     )

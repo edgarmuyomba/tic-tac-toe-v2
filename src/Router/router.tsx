@@ -10,7 +10,7 @@ export default function Router() {
             element: <Welcome />
         },
         {
-            path: 'new_game/',
+            path: 'game/:type',
             element: <Game />
         },
         {
