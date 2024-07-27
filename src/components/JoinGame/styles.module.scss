@@ -9,34 +9,50 @@ div.container {
 
     .header {
         @include base.basic_flex();
-        border: 1px solid red;
-        height: 35%;
+        background-color: rgba(235, 64, 52, 0.6);
+        height: 40%;
         width: 100%;
     }
 
     p.text {
         font-size: 3rem;
+        font-weight: bold;
+        color: whitesmoke;
     }
 
     form {
         @include base.basic_flex();
         gap: 1rem;
-        height: 65%;
+        height: 60%;
         width: 100%;
+        // background-color: whitesmoke;
     }
 
     input[type="text"] {
         height: 4rem;
         width: 30rem;
-        padding: 0 1rem;
+        padding: 0 2rem;
         font-size: 2rem;
-        border-radius: 5px;
+        border-radius: 50px;
+        background-color: transparent;
+        font-weight: 200;
     }
 
-    input[type="submit"] {
-        height: 4rem;
-        padding: 0 2rem;
-        border-radius: 5px;
-        cursor: pointer;
+    input:focus {
+        outline: none;
     }
+}
+
+
+div.container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../../assets/squiggly_bg.jpg') no-repeat center center;
+    background-size: cover;
+    opacity: 0.03;
+    z-index: -1;
 }
