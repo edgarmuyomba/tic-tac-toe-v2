@@ -1,0 +1,26 @@
+@use '../../base';
+
+div.container {
+    @include base.basic_flex();
+    height: 25%;
+    justify-content: space-evenly;
+
+    div.you, div.opponent {
+        @include base.basic_flex();
+        flex-direction: column;
+        height: 100%;
+        width: 40%;
+
+        p.title {
+            font-weight: bold;
+        }
+
+        img {
+            height: 100px;
+        }
+    }
+
+    div.you > p.title {
+        color: tomato;
+    }
+}
