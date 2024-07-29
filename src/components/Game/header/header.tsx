@@ -1,12 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Timer from '../timer/timer';
 import styles from './styles.module.scss';
 import snoopy from '../../../assets/snoopy_thinking.gif';
 import bear from '../../../assets/bear_thinking.gif';
 
-export default function Header() {
-    const [IsX, setIsX] = useState(true);
+export default function Header({ mark, turn }: { mark: String, turn: String },) {
+
+    const [IsX, setIsX] = useState(false);
     const [YourTurn, setYourTurn] = useState(false);
+
+    useEffect(() => {
+        if (mark == "X") {
+            setIsX(true);
+        }
+
+        if (turn == mark) {
+            setYourTurn(true);
+        }
+    }, [])
 
     return (
         <div className={styles.container}>
