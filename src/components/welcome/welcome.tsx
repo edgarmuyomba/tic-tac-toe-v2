@@ -18,7 +18,7 @@ function Welcome() {
                         Join Game
                     </button>
                 </Link>
-                <Link to="ai">
+                <Link to="game/ai">
                     <button>
                         AI
                     </button>

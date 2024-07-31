@@ -5,16 +5,18 @@ export default function Board() {
 
     const [IsX, setIsX] = useState(true);
 
-    const board = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const board = [null, null, null, null, null, null, null, null, null];
 
     return (
         <div className={styles.container}>
             {
-                board.map((cell) => {
+                board.map((cell, index) => {
                     return (
-                        <div key={cell} className={styles.cell}
+                        <div key={index} className={styles.cell}
                             style={{ color: IsX ? "red" : "black" }}
-                        >X</div>
+                        >{
+                                cell !== null ? cell : ""
+                            }</div>
                     )
                 })
             }
