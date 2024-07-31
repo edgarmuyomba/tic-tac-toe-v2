@@ -31,10 +31,13 @@ function Game() {
                     }
                 });
             });
+        } else if (type === 'ai') {
+            // play against the ai
         } else {
             // notify the server that a second player has started the game of id=type
+
         }
-    }, []);
+    }, []); 
 
     return (
         <div className={styles.container}>
