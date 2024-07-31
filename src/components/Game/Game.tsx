@@ -4,6 +4,7 @@ import Header from "./header/header";
 import styles from "./styles.module.scss";
 import { useEffect, useState } from "react";
 import Footer from "./Footer/Footer";
+import { handleNewGame } from "../../utils/utils";
 
 function Game() {
 
@@ -13,9 +14,9 @@ function Game() {
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
-    let mark = "";
-    let turn = "";
-    let game_id = "";
+    const [mark, setMark] = useState("");
+    const [turn, setTurn] = useState("");
+    const [gameId, setGameId] = useState("");
 
     useEffect(() => {
         if (type === 'new_game') {
@@ -23,17 +24,12 @@ function Game() {
             let websocket = new WebSocket("ws://127.0.0.1:8001/");
             websocket.addEventListener("open", () => {
                 websocket.send(JSON.stringify({ "type": "new_game" }));
-                function listener(event: MessageEvent) {
+                websocket.addEventListener("message", (event: MessageEvent) => {
                     const eventData = JSON.parse(event.data);
                     if (eventData.type == "new_game") {
-                        mark = eventData.mark;
-                        turn = eventData.turn;
-                        game_id = eventData.game_id;
+                        handleNewGame(eventData, setMark, setTurn, setGameId, setLoading);
                     }
-                }
-                websocket.addEventListener("message", listener);
-                websocket.removeEventListener("message", listener);
-                setLoading(false);
+                });
             });
         } else {
             // notify the server that a second player has started the game of id=type
@@ -49,7 +45,7 @@ function Game() {
                         <>
                             <Header mark={mark} turn={turn} />
                             <Board />
-                            <Footer game_id={game_id} />
+                            <Footer game_id={gameId} />
                         </>
                     )
             }
