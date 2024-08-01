@@ -15,10 +15,7 @@ export function handlePlayMove(eventData: any, setBoard: (array: (String | null)
     setTimeout(() => {
         setBoard(eventData.game_state);
         var mark = localStorage.getItem("mark");
-        eventData.mark = mark;
-        console.log(eventData);
         var turn: String = eventData.turn;
-        
         if (turn === mark) {
             setYourTurn(true);
         } else setYourTurn(false);
