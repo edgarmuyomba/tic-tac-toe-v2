@@ -1,27 +1,26 @@
-import { useEffect, useState } from 'react';
 import Timer from '../timer/timer';
 import styles from './styles.module.scss';
 import snoopy from '../../../assets/snoopy_thinking.gif';
 import bear from '../../../assets/bear_thinking.gif';
 
-export default function Header({ mark, turn }: { mark: String, turn: String },) {
+export default function Header({ IsX, yourTurn }: { IsX: boolean, yourTurn: boolean }) {
 
-    const [IsX, setIsX] = useState(false);
-    const [YourTurn, setYourTurn] = useState(false);
+    // const [IsX, setIsX] = useState(false);
+    // const [YourTurn, setYourTurn] = useState(false);
 
-    useEffect(() => {
-        if (mark == "X") {
-            setIsX(true);
-        }
+    // useEffect(() => {
+    //     if (mark == "X") {
+    //         setIsX(true);
+    //     }
 
-        if (turn == mark) {
-            setYourTurn(true);
-        }
-    }, [])
+    //     if (turn == mark) {
+    //         setYourTurn(true);
+    //     }
+    // }, [])
 
     return (
         <div className={styles.container}>
-            <div className={styles.you}  style={{ opacity: YourTurn ? 1 : 0.2 }}>
+            <div className={styles.you}  style={{ opacity: yourTurn ? 1 : 0.2 }}>
                 {
                     IsX ?
                         (
@@ -47,7 +46,7 @@ export default function Header({ mark, turn }: { mark: String, turn: String },) 
                 </div>
             </div>
             <Timer />
-            <div className={styles.opponent}  style={{ opacity: YourTurn ? 0.2 : 1 }}>
+            <div className={styles.opponent}  style={{ opacity: yourTurn ? 0.2 : 1 }}>
                 {
                     IsX ?
                         (

@@ -7,11 +7,12 @@ div.container {
     box-shadow: -10px 10px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
 }
 
 div.cell {
     @include base.basic_flex();
     border: 3px solid whitesmoke;
     font-weight: bold;
-    font-size: 4.5rem;
+    font-size: 3rem;
 }

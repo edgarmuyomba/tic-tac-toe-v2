@@ -1,6 +1,14 @@
+import { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 
-export default function Footer({ game_id }: { game_id: string}) {
+export default function Footer() {
+
+    const [game_id, setGameId] = useState("");
+
+    useEffect(() => {
+        const id = localStorage.getItem("game_id");
+        setGameId(id ?? "no id");
+    }, []);
 
     function copyText() {
         navigator.clipboard.writeText(game_id);

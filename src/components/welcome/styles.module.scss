@@ -50,5 +50,5 @@ div.container {
 }
 
 div.container::before {
-    @include base.background('../../assets/pattern_bg.jpg', 0.15);
+    @include base.background('../../assets/pattern_bg.jpg', 0.4);
 }
