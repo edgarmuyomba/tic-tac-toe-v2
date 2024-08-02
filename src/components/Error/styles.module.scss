@@ -1,0 +1,36 @@
+@use "../../base";
+
+$red: rgb(180, 36, 36);
+$darkRed: rgb(131, 0, 0);
+
+div.container {
+    @include base.basic_flex();
+    border: 1px solid $red;
+    width: 20rem;
+    border-radius: 5px;
+    background-color: rgb(255, 222, 216);
+    align-items: start;
+    justify-content: start;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    // backdrop-filter: blur(5px) ;
+
+    div.header {
+        @include base.basic_flex();
+    }
+
+    p.title {
+        font-weight: 600;
+        color: $darkRed;
+    }
+
+    div.message {
+        color: $red;
+        font-size: 0.8rem;
+    }
+
+    svg {
+        height: 35px;
+        fill: $red;;
+    }
+}

@@ -1,27 +1,49 @@
 import { Link } from "react-router-dom";
 import styles from "./styles.module.scss";
+import { motion } from "framer-motion";
+import Error from "../Error/Error";
 
 function Welcome() {
+
+    const buttonVariants = {
+        hover: {
+            scale: 1.1,
+            boxShadow: "0 0 8px rgb(256, 256, 256)"
+        }
+    }
+
     return (
         <div className={styles.container}>
+            {
+                <Error message={"Error message"}/>
+            }
             <p className={styles.title}>
                 Tic Tac Toe
             </p>
             <div className={styles.buttons}>
                 <Link to="game/new_game">
-                    <button>
+                    <motion.button
+                        variants={buttonVariants}
+                        whileHover="hover"
+                    >
                         New Game
-                    </button>
+                    </motion.button>
                 </Link>
                 <Link to="join_game">
-                    <button>
+                    <motion.button
+                        variants={buttonVariants}
+                        whileHover="hover"
+                    >
                         Join Game
-                    </button>
+                    </motion.button>
                 </Link>
                 <Link to="game/ai">
-                    <button>
+                    <motion.button
+                        variants={buttonVariants}
+                        whileHover="hover"
+                    >
                         AI
-                    </button>
+                    </motion.button>
                 </Link>
             </div>
             <div className={styles.copy}>
