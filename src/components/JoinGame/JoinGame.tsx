@@ -1,10 +1,14 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import styles from "./styles.module.scss";
 import { useNavigate } from "react-router-dom";
+import Message from "../Message/Message";
+import { Status } from "../../utils/constants";
 
 function JoinGame() {
 
     const inputRef = useRef<HTMLInputElement>(null);
+
+    const [message, showMessage] = useState(false);
 
     const navigate = useNavigate();
 
@@ -13,12 +17,17 @@ function JoinGame() {
         if (inputRef.current !== null) {
             var value = inputRef.current.value;
             inputRef.current.value = "";
-            navigate(`/game/${value}`, {replace: true});
+            navigate(`/game/${value}`, { replace: true });
         }
     }
 
     return (
         <div className={styles.container}>
+            {
+                message ? (
+                    <Message status={Status.Info} message={"message"} />
+                ) : null
+            }
             <div className={styles.header}>
                 <p className={styles.text}>
                     Please enter the game id

@@ -4,7 +4,9 @@ import Header from "./header/header";
 import styles from "./styles.module.scss";
 import { useEffect, useState } from "react";
 import Footer from "./Footer/Footer";
-import { handleNewGame, handlePlayMove } from "../../utils/utils";
+import { handleGameEvents, handleNewGame, handlePlayMove } from "../../utils/utils";
+import Message from "../Message/Message";
+import { GameEvent, Status } from "../../utils/constants";
 
 function Game() {
 
@@ -19,6 +21,8 @@ function Game() {
     const [board, setBoard] = useState<(String | null)[]>([null, null, null, null, null, null, null, null, null]);
     const [IsX, setIsX] = useState(false);
     const [yourTurn, setYourTurn] = useState(false);
+
+    const [message, showMessage] = useState(false);
 
     useEffect(() => {
         let _websocket = new WebSocket("ws://127.0.0.1:8001/");
@@ -47,13 +51,13 @@ function Game() {
                     handlePlayMove(eventData, setBoard, setYourTurn);
                     break;
                 case "win":
-                    console.log("someone wins");
+                    handleGameEvents(eventData, GameEvent.Win, setBoard, showMessage);
                     break;
                 case "draw":
-                    console.log("Draw");
+                    handleGameEvents(eventData, GameEvent.Draw, setBoard, showMessage);
                     break;
                 case "error":
-                    console.log("Error");
+                    handleGameEvents(eventData, GameEvent.Error, setBoard, showMessage);
                     break;
 
             }
@@ -62,6 +66,11 @@ function Game() {
 
     return (
         <div className={styles.container}>
+            {
+                message ? (
+                    <Message status={Status.Info} message={"message"} />
+                ) : null
+            }
             {
                 loading
                     ? null

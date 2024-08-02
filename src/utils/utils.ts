@@ -1,3 +1,5 @@
+import { GameEvent } from "./constants";
+
 export function handleNewGame(eventData: any, setYourTurn: (turn: boolean) => void, setLoading: (loading: boolean) => void, setIsX: (IsX: boolean) => void) {
     setTimeout(() => {
         localStorage.setItem("mark", eventData.mark);
@@ -20,4 +22,34 @@ export function handlePlayMove(eventData: any, setBoard: (array: (String | null)
             setYourTurn(true);
         } else setYourTurn(false);
     }, 1500);
+}
+
+export function handleGameEvents(eventData: any, event: GameEvent, setBoard: (array: (String | null)[]) => void, showMessage: (message: boolean) => void) {
+    switch (event) {
+        case  GameEvent.Win:
+            setTimeout(() => {
+                setBoard(eventData.game_state);
+            }, 1000);
+            setTimeout(() => {
+                displayMessage(showMessage);
+            }, 500);
+            break;
+        case GameEvent.Draw:
+            setTimeout(() => {
+                setBoard(eventData.game_state);
+            }, 1000);
+            setTimeout(() => {
+                displayMessage(showMessage);
+            }, 500);
+            break;
+        case GameEvent.Error:
+            break;
+    }
+}
+
+export function displayMessage(showMessage: (message: boolean) => void) {
+    showMessage(true);
+    setTimeout(() => {
+        showMessage(false);
+    }, 5000);
 }

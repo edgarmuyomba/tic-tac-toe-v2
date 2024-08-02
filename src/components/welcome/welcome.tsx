@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 import styles from "./styles.module.scss";
 import { motion } from "framer-motion";
-import Error from "../Error/Error";
+import Message from "../Message/Message";
+import { Status } from "../../utils/constants";
+import { useEffect, useState } from "react";
 
 function Welcome() {
+
+    const [message, showMessage] = useState(false);
 
     const buttonVariants = {
         hover: {
@@ -15,7 +19,9 @@ function Welcome() {
     return (
         <div className={styles.container}>
             {
-                <Error message={"Error message"}/>
+                message ? (
+                    <Message status={Status.Info} message={"Error message"} />
+                ) : null
             }
             <p className={styles.title}>
                 Tic Tac Toe
