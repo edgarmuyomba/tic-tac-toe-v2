@@ -28,7 +28,7 @@ export default function Board({ board, IsX, yourTurn, setYourTurn, websocket }: 
                         <div key={index} data-index={index} className={styles.cell}
                             style={{ color: IsX ? "red" : "black" }} onClick={handleClick}
                         >{
-                                cell !== null ? cell : ""
+                                cell !== null && cell
                             }</div>
                     )
                 })

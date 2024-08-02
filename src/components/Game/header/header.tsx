@@ -5,19 +5,6 @@ import bear from '../../../assets/bear_thinking.gif';
 
 export default function Header({ IsX, yourTurn }: { IsX: boolean, yourTurn: boolean }) {
 
-    // const [IsX, setIsX] = useState(false);
-    // const [YourTurn, setYourTurn] = useState(false);
-
-    // useEffect(() => {
-    //     if (mark == "X") {
-    //         setIsX(true);
-    //     }
-
-    //     if (turn == mark) {
-    //         setYourTurn(true);
-    //     }
-    // }, [])
-
     return (
         <div className={styles.container}>
             <div className={styles.you}  style={{ opacity: yourTurn ? 1 : 0.2 }}>
