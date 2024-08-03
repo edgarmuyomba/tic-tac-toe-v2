@@ -31,6 +31,7 @@ function Game() {
 
     useEffect(() => {
         let _websocket = new WebSocket("ws://127.0.0.1:8001/");
+        // let _websocket = new WebSocket("wss://https://rh69rj62-8001.eun1.devtunnels.ms/");
         setWebsocket(_websocket);
         if (type === 'new_game') {
             _websocket.addEventListener("open", () => {
