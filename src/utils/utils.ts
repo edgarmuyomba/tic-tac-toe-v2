@@ -38,9 +38,9 @@ export function handleGameEvents(eventData: any, event: GameEvent, setBoard: (ar
             setTimeout(() => {
                 setBoard(eventData.game_state);
             }, 200);
-            setTimeout(() => {
-                displayMessage(showMessage);
-            }, 500);
+            // setTimeout(() => {
+            //     displayMessage(showMessage);
+            // }, 500);
             break;
         case GameEvent.Error:
             break;
