@@ -53,3 +53,4 @@ export function displayMessage(showMessage: (message: boolean) => void) {
         showMessage(false);
     }, 5000);
 }
+

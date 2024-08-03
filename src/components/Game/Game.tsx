@@ -28,7 +28,6 @@ function Game() {
         let _websocket = new WebSocket("ws://127.0.0.1:8001/");
         setWebsocket(_websocket);
         if (type === 'new_game') {
-            // generate a unique ID and send it to the server or notify the server of a new game and get a game ID
             _websocket.addEventListener("open", () => {
                 _websocket.send(JSON.stringify({ type: "new_game" }));
             });

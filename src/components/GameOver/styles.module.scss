@@ -1,0 +1,29 @@
+@use "../../base";
+
+div.container {
+    @include base.basic_flex();
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    flex-direction: column;
+
+    .header .text {
+        font-size: 5rem;
+        color: white;
+        font-weight: bold;
+    }
+
+    .message .text {
+        color: white;
+        font-size: 3rem;
+    }
+
+    button {
+        padding: 0.5rem 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+div.win {
+
+}

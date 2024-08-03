@@ -5,8 +5,7 @@ export enum Status {
 }
 
 export interface Style {
-    base: string,
-    light: string
+    [property: string]: string,
 }
 
 export enum GameEvent {
