@@ -6,15 +6,17 @@ export default function Board({ board, IsX, yourTurn, setYourTurn, websocket }: 
         if (yourTurn) {
             const element = event.currentTarget;
             var mark = localStorage.getItem("mark");
-            element.textContent = mark;
-            setYourTurn(false);
-            const index = parseInt(element.dataset.index!);
-            const newEvent = {
-                type: "play_move",
-                game_id: localStorage.getItem("game_id"),
-                index: index
+            if (!(element.textContent === "X" || element.textContent == "O")) {
+                element.textContent = mark;
+                setYourTurn(false);
+                const index = parseInt(element.dataset.index!);
+                const newEvent = {
+                    type: "play_move",
+                    game_id: localStorage.getItem("game_id"),
+                    index: index
+                }
+                websocket.send(JSON.stringify(newEvent));
             }
-            websocket.send(JSON.stringify(newEvent));
         } else {
             // handle error, not your turn
         }

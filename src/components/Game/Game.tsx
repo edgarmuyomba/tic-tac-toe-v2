@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import Board from "./board/board";
 import Header from "./header/header";
 import styles from "./styles.module.scss";
@@ -7,6 +7,7 @@ import Footer from "./Footer/Footer";
 import { handleGameEvents, handleNewGame, handlePlayMove } from "../../utils/utils";
 import Message from "../Message/Message";
 import { GameEvent, Status } from "../../utils/constants";
+import GameOver from "../GameOver/GameOver";
 
 function Game() {
 
@@ -23,6 +24,10 @@ function Game() {
     const [yourTurn, setYourTurn] = useState(false);
 
     const [message, showMessage] = useState(false);
+
+    const [gameEvent, setGameEvent] = useState<GameEvent>(GameEvent.Error);
+    const [gameOver, setGameOver] = useState(false);
+    const [eventData, setEventData] = useState<any>();
 
     useEffect(() => {
         let _websocket = new WebSocket("ws://127.0.0.1:8001/");
@@ -41,30 +46,45 @@ function Game() {
 
         }
         _websocket.addEventListener("message", (event: MessageEvent) => {
-            const eventData = JSON.parse(event.data);
-            switch (eventData.type) {
+            const _eventData = JSON.parse(event.data);
+            setEventData(_eventData);
+            switch (_eventData.type) {
                 case "new_game":
-                    handleNewGame(eventData, setYourTurn, setLoading, setIsX);
+                    handleNewGame(_eventData, setYourTurn, setLoading, setIsX);
                     break;
                 case "play_move":
-                    handlePlayMove(eventData, setBoard, setYourTurn);
+                    handlePlayMove(_eventData, setBoard, setYourTurn);
                     break;
                 case "win":
-                    handleGameEvents(eventData, GameEvent.Win, setBoard, showMessage);
+                    handleGameEvents(_eventData, GameEvent.Win, setBoard, showMessage);
+                    setGameEvent(GameEvent.Win);
+                    setTimeout(() => {
+                        setGameOver(true);
+                    }, 500);
                     break;
                 case "draw":
-                    handleGameEvents(eventData, GameEvent.Draw, setBoard, showMessage);
+                    handleGameEvents(_eventData, GameEvent.Draw, setBoard, showMessage);
+                    setGameEvent(GameEvent.Draw);
+                    setTimeout(() => {
+                        setGameOver(true);
+                    }, 500);
                     break;
                 case "error":
-                    handleGameEvents(eventData, GameEvent.Error, setBoard, showMessage);
+                    handleGameEvents(_eventData, GameEvent.Error, setBoard, showMessage);
+                    setGameEvent(GameEvent.Error);
                     break;
 
             }
+
+
         });
     }, []);
 
     return (
         <div className={styles.container}>
+            {
+                <GameOver gameEvent={gameEvent} eventData={eventData} display={gameOver} />
+            }
             {
                 message ? (
                     <Message status={Status.Info} message={"message"} />

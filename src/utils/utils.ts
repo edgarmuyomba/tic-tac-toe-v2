@@ -21,23 +21,23 @@ export function handlePlayMove(eventData: any, setBoard: (array: (String | null)
         if (turn === mark) {
             setYourTurn(true);
         } else setYourTurn(false);
-    }, 1500);
+    }, 200);
 }
 
 export function handleGameEvents(eventData: any, event: GameEvent, setBoard: (array: (String | null)[]) => void, showMessage: (message: boolean) => void) {
     switch (event) {
-        case  GameEvent.Win:
+        case GameEvent.Win:
             setTimeout(() => {
                 setBoard(eventData.game_state);
-            }, 1000);
-            setTimeout(() => {
-                displayMessage(showMessage);
-            }, 500);
+            }, 200);
+            // setTimeout(() => { 
+            //     displayMessage(showMessage);
+            // }, 500);
             break;
         case GameEvent.Draw:
             setTimeout(() => {
                 setBoard(eventData.game_state);
-            }, 1000);
+            }, 200);
             setTimeout(() => {
                 displayMessage(showMessage);
             }, 500);
