@@ -5,6 +5,7 @@ div.container {
     height: 100vh;
     width: 100vw;
     position: absolute;
+    z-index: 1;
     flex-direction: column;
 
     .header .text {
@@ -22,4 +23,16 @@ div.container {
         padding: 0.5rem 1rem;
         margin-bottom: 1rem;
     }
+}
+
+div.you_win {
+    background-color: lightgreen;
+}
+
+div.you_lose {
+    background-color: lightsalmon;
+}
+
+div.draw {
+    background-color: lightcoral;
 }

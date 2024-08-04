@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 export default function GameOver({ gameEvent, eventData, display }: { gameEvent: GameEvent, eventData: any, display: boolean }) {
 
-    const [style, setStyle] = useState<Style | null>(null);
+    const [style, setStyle] = useState<string>("");
     const [mark, setMark] = useState<String | null>(null);
     const [gif, setGif] = useState<string>("");
     const [message, setMessage] = useState("");
@@ -30,30 +30,21 @@ export default function GameOver({ gameEvent, eventData, display }: { gameEvent:
             case GameEvent.Win:
                 // are you the winner or the loser?
                 if (mark === eventData.winner) {
-                    setStyle({
-                        bgColor: "lightgreen"
-                    });
+                    setStyle(styles.you_win);
                     setMessage("You Win!");
                     if (mark === 'X') {
                         setGif(snoopy_winner);
                     } else setGif(bear_winner);
                 } else {
-                    setStyle({
-                        bgColor: "lightorange"
-                    });
+                    setStyle(styles.you_lose);
                     setMessage("You Lose!");
-                    console.log(style);
-
                     if (mark === 'X') {
                         setGif(snoopy_loss);
                     } else setGif(bear_loss);
                 }
                 break;
             case GameEvent.Draw:
-                setStyle({
-                    bgColor: "lightred"
-                });
-                console.log(style);
+                setStyle(styles.draw);
                 setMessage("Draw!!!");
                 if (mark === 'X') {
                     setGif(snoopy_draw);
@@ -66,8 +57,7 @@ export default function GameOver({ gameEvent, eventData, display }: { gameEvent:
 
 
     return (
-        <div style={{ backgroundColor: style?.bgColor, display: display ? 'flex' : 'none' }} className={`${styles.container} ${gameEvent == GameEvent.Win ?
-            styles.win : gameEvent == GameEvent.Draw ? styles.draw : null}`}>
+        <div style={{ display: display ? 'flex' : 'none' }} className={`${styles.container} ${style}`}>
             <div className={styles.header}>
                 <p className={styles.text}>
                     Game Over
