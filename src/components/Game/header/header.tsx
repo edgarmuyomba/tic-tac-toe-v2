@@ -32,7 +32,7 @@ export default function Header({ IsX, yourTurn }: { IsX: boolean, yourTurn: bool
                     }
                 </div>
             </div>
-            <Timer />
+            {/* <Timer /> */}
             <div className={styles.opponent}  style={{ opacity: yourTurn ? 0.2 : 1 }}>
                 {
                     IsX ?

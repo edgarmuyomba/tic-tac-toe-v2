@@ -39,6 +39,7 @@ function Game() {
             });
         } else if (type === 'ai') {
             // play against the ai
+            localStorage.setItem("ai_game", "true");
             _websocket.addEventListener("open", () => {
                 _websocket.send(JSON.stringify({ type: "ai" }));
             })

@@ -14,12 +14,19 @@ export default function GameOver({ gameEvent, eventData, display }: { gameEvent:
     const [style, setStyle] = useState<string>("");
     const [mark, setMark] = useState<String | null>(null);
     const [gif, setGif] = useState<string>("");
+    const [aIGame, setAIGame] = useState(false);
     const [message, setMessage] = useState("");
 
     useEffect(() => {
         const player_mark = localStorage.getItem("mark");
+        // const player_mark = "X";
+
         if (player_mark) {
             setMark(player_mark);
+        }
+        const ai_game = localStorage.getItem("ai_game");
+        if (Boolean(ai_game)) {
+            setAIGame(true);
         }
     }, []);
 
@@ -58,6 +65,9 @@ export default function GameOver({ gameEvent, eventData, display }: { gameEvent:
 
     return (
         <div style={{ display: display ? 'flex' : 'none' }} className={`${styles.container} ${style}`}>
+            <div className={styles.gif}>
+                <img src={gif} alt="gif" />
+            </div>
             <div className={styles.header}>
                 <p className={styles.text}>
                     Game Over
@@ -68,13 +78,21 @@ export default function GameOver({ gameEvent, eventData, display }: { gameEvent:
                     {message}
                 </p>
             </div>
-            <Link to="/">
-                <button>
-                    Back to home
-                </button>
-            </Link>
-            <div className={styles.gif}>
-                <img src={gif} alt="gif" />
+            <div className={styles.buttons}>
+                <Link to="/">
+                    <div className={styles.button}>
+                        Back to home
+                    </div>
+                </Link>
+                {
+                    aIGame && (
+                        <Link to="game/ai">
+                            <div className={styles.button}>
+                                Restart
+                            </div>
+                        </Link>
+                    )
+                }
             </div>
         </div>
 

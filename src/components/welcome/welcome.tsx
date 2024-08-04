@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Message from "../Message/Message";
 import { GameEvent, Status } from "../../utils/constants";
 import { useEffect, useState } from "react";
+import GameOver from "../GameOver/GameOver";
 
 function Welcome() {
 

@@ -3,6 +3,8 @@
 div.container {
     @include base.basic_flex();
     height: 20%;
+    width: 70%;
+    justify-content: space-between;
 
     div.you, div.opponent {
         @include base.basic_flex();
