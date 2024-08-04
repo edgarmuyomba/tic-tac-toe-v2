@@ -44,6 +44,11 @@ export function handleGameEvents(eventData: any, event: GameEvent, setBoard: (ar
             break;
         case GameEvent.Error:
             break;
+        case GameEvent.Join:
+            setTimeout(() => {
+                displayMessage(showMessage);
+            }, 500);
+            break;
     }
 }
 
@@ -53,4 +58,3 @@ export function displayMessage(showMessage: (message: boolean) => void) {
         showMessage(false);
     }, 5000);
 }
-

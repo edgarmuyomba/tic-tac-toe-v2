@@ -1,10 +1,13 @@
-import { useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import styles from "./styles.module.scss";
 import { useNavigate } from "react-router-dom";
 import Message from "../Message/Message";
 import { Status } from "../../utils/constants";
+import { AppContext } from "../../AppContext";
 
 function JoinGame() {
+
+    const { websocket } = useContext(AppContext);
 
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -37,7 +40,7 @@ function JoinGame() {
                 </p>
             </div>
             <form onSubmit={handleFormSubmit} action="">
-                <input ref={inputRef} type="text" pattern="[^\s]{6}" name="game_id" id="game_id" placeholder="Game ID" />
+                <input ref={inputRef} type="text" pattern="[^\s]{8}" name="game_id" id="game_id" placeholder="Game ID" />
             </form>
         </div>
     )

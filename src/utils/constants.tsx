@@ -11,5 +11,6 @@ export interface Style {
 export enum GameEvent {
     Win,
     Draw,
-    Error
+    Error,
+    Join
 }

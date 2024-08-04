@@ -3,12 +3,14 @@ import styles from "./styles.module.scss";
 import { motion } from "framer-motion";
 import Message from "../Message/Message";
 import { GameEvent, Status } from "../../utils/constants";
-import { useEffect, useState } from "react";
-import GameOver from "../GameOver/GameOver";
+import { useContext, useEffect, useState } from "react";
+import { AppContext } from "../../AppContext";
 
 function Welcome() {
 
     const [message, showMessage] = useState(false);
+
+    const { websocket } = useContext(AppContext);
 
     const buttonVariants = {
         hover: {

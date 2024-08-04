@@ -5,6 +5,7 @@ import JoinGame from "../components/JoinGame/JoinGame";
 
 export default function Router() {
     const router = createBrowserRouter([
+
         {
             path: '/',
             element: <Welcome />
@@ -18,6 +19,7 @@ export default function Router() {
             element: <JoinGame />
         }
     ]
+
     );
 
     return <RouterProvider router={router} />

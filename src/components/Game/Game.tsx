@@ -8,12 +8,14 @@ import { handleGameEvents, handleNewGame, handlePlayMove } from "../../utils/uti
 import Message from "../Message/Message";
 import { GameEvent, Status } from "../../utils/constants";
 import GameOver from "../GameOver/GameOver";
+import { useContext } from "react";
+import { AppContext } from "../../AppContext";
 
 function Game() {
 
     const { type } = useParams();
 
-    const [websocket, setWebsocket] = useState<WebSocket | null>(null);
+    const { websocket } = useContext(AppContext);
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
@@ -30,24 +32,26 @@ function Game() {
     const [eventData, setEventData] = useState<any>();
 
     useEffect(() => {
-        let _websocket = new WebSocket("ws://127.0.0.1:8001/");
+        // let _websocket = new WebSocket("ws://127.0.0.1:8001/");
         // let _websocket = new WebSocket("wss://https://rh69rj62-8001.eun1.devtunnels.ms/");
-        setWebsocket(_websocket);
+        // setWebsocket(_websocket);
         if (type === 'new_game') {
-            _websocket.addEventListener("open", () => {
-                _websocket.send(JSON.stringify({ type: "new_game" }));
+            websocket.addEventListener("open", () => {
+                websocket.send(JSON.stringify({ type: "new_game" }));
             });
         } else if (type === 'ai') {
             // play against the ai
             localStorage.setItem("ai_game", "true");
-            _websocket.addEventListener("open", () => {
-                _websocket.send(JSON.stringify({ type: "ai" }));
+            websocket.addEventListener("open", () => {
+                websocket.send(JSON.stringify({ type: "ai" }));
             })
         } else {
             // notify the server that a second player has started the game of id=type
-
+            websocket.addEventListener("open", () => {
+                websocket.send(JSON.stringify({ type: "join_game", game_id: type }));
+            })
         }
-        _websocket.addEventListener("message", (event: MessageEvent) => {
+        websocket.addEventListener("message", (event: MessageEvent) => {
             const _eventData = JSON.parse(event.data);
             setEventData(_eventData);
             switch (_eventData.type) {
