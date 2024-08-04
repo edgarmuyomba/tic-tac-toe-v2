@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GameEvent, Style } from "../../utils/constants";
+import { GameEvent } from "../../utils/constants";
 import styles from "./styles.module.scss";
 import snoopy_winner from "../../assets/snoopy_winner.gif";
 import snoopy_loss from "../../assets/snoopy_loss.gif";

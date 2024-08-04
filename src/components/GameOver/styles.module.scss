@@ -6,6 +6,7 @@ div.container {
     width: 100vw;
     position: absolute;
     z-index: 1;
+    top: 0;
     flex-direction: column;
 
     .header .text {
