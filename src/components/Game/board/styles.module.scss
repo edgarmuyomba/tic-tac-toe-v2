@@ -7,7 +7,7 @@ div.container {
     box-shadow: -10px 10px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr); 
 }
 
 div.cell {

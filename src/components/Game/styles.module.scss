@@ -12,3 +12,10 @@ div.container {
         width: 40vw;
     }
 }
+
+@media(max-width: 767px) {
+    div.container {
+        width: 90%;
+        height: 110vw;
+    }
+}
