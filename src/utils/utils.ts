@@ -29,7 +29,7 @@ export function handleGameEvents(eventData: any, event: GameEvent, setBoard: (ar
         case GameEvent.Win:
             setTimeout(() => {
                 setBoard(eventData.game_state);
-            }, 200);
+            }, 500);
             // setTimeout(() => { 
             //     displayMessage(showMessage);
             // }, 500);
@@ -37,7 +37,7 @@ export function handleGameEvents(eventData: any, event: GameEvent, setBoard: (ar
         case GameEvent.Draw:
             setTimeout(() => {
                 setBoard(eventData.game_state);
-            }, 200);
+            }, 500);
             // setTimeout(() => {
             //     displayMessage(showMessage);
             // }, 500);

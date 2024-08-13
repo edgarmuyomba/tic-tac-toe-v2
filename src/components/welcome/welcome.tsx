@@ -19,6 +19,12 @@ function Welcome() {
         }
     }
 
+    useEffect(() => {
+        websocket.addEventListener("open", () => {
+            websocket.send(JSON.stringify({ type: "connect" }));
+        })
+    }, [])
+
     return (
         <div className={styles.container}>
             {

@@ -86,7 +86,7 @@ export default function GameOver({ gameEvent, eventData, display }: { gameEvent:
                 </Link>
                 {
                     aIGame && (
-                        <Link to="game/ai">
+                        <Link to="/game/ai">
                             <div className={styles.button}>
                                 Restart
                             </div>

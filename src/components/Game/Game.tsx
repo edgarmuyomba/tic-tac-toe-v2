@@ -36,20 +36,20 @@ function Game() {
         // let _websocket = new WebSocket("wss://https://rh69rj62-8001.eun1.devtunnels.ms/");
         // setWebsocket(_websocket);
         if (type === 'new_game') {
-            websocket.addEventListener("open", () => {
-                websocket.send(JSON.stringify({ type: "new_game" }));
-            });
+            // websocket.addEventListener("open", () => {
+            websocket.send(JSON.stringify({ type: "new_game" }));
+            // });
         } else if (type === 'ai') {
             // play against the ai
             localStorage.setItem("ai_game", "true");
-            websocket.addEventListener("open", () => {
-                websocket.send(JSON.stringify({ type: "ai" }));
-            })
+            // websocket.addEventListener("open", () => {
+            websocket.send(JSON.stringify({ type: "ai" }));
+            // })
         } else {
             // notify the server that a second player has started the game of id=type
-            websocket.addEventListener("open", () => {
-                websocket.send(JSON.stringify({ type: "join_game", game_id: type }));
-            })
+            // websocket.addEventListener("open", () => {
+            websocket.send(JSON.stringify({ type: "join_game", game_id: type }));
+            // })
         }
         websocket.addEventListener("message", (event: MessageEvent) => {
             const _eventData = JSON.parse(event.data);
