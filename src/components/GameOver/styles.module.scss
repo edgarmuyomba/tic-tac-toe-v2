@@ -9,6 +9,14 @@ div.container {
     top: 0;
     flex-direction: column;
 
+    div.gif {
+        border-radius: 50%;
+        background-position: center;
+        background-size: cover;
+        height: 20rem;
+        width: 20rem;
+    }
+
     .header .text {
         font-size: 5rem;
         color: white;
@@ -20,20 +28,44 @@ div.container {
         font-size: 3rem;
     }
 
-    button {
+    .buttons {
+        margin-top: 1rem;
+    }
+
+    .buttons a {
         padding: 0.5rem 1rem;
         margin-bottom: 1rem;
+        border: 2px solid white;
+        border-radius: 5px;
+        text-decoration: none;
+        color: white;
+    }
+
+    .buttons a:hover {
+        background-color: white;
     }
 }
 
 div.you_win {
     background-color: lightgreen;
+
+    .buttons a:hover {
+        color: lightgreen;
+    }
 }
 
 div.you_lose {
     background-color: lightsalmon;
+
+    .buttons a:hover {
+        color: lightsalmon;
+    }
 }
 
 div.draw {
     background-color: lightcoral;
+
+    .buttons a:hover {
+        color: lightcoral;
+    }
 }

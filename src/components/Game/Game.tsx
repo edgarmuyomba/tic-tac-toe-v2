@@ -90,6 +90,7 @@ function Game() {
         <div className={styles.container}>
             {
                 <GameOver gameEvent={gameEvent} eventData={eventData} display={gameOver} />
+                // <GameOver gameEvent={GameEvent.Win} eventData={{ winner: 'O' }} display={true} />
             }
             {
                 message ? (
