@@ -30,6 +30,7 @@ export default function GameOver({ gameEvent, eventData, display }: { gameEvent:
 
         switch (gameEvent) {
             case GameEvent.Win:
+                alert(mark);
                 // are you the winner or the loser?
                 if (mark === eventData.winner) {
                     setStyle(styles.you_win);
