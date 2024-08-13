@@ -27,3 +27,16 @@ div.game_id {
         color: lightgray;
     }
 }
+
+@media(max-width: 1014px) {
+    div.game_id {
+        p.text {
+            font-size: 1.2rem;
+        }
+
+        p.sub {
+            color: grey;
+            font-size: 0.9rem;
+        }
+    }
+}

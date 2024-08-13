@@ -5,3 +5,10 @@ div.container {
     flex-direction: column;
     align-items: center;
 }
+
+@media(max-width: 1024px) {
+    div.container {
+        height: 50vw;
+        width: 40vw;
+    }
+}

@@ -52,3 +52,34 @@ div.container {
 div.container::before {
     @include base.background('../../assets/squiggly_bg.jpg', 0.03);
 }
+
+@media(max-width: 1024px) {
+    div.container p.subtext {
+        font-size: 1rem;
+    }
+}
+
+@media(max-width: 767px) {
+    div.container {
+
+        .header {
+            // width: 90%;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        p.subtext {
+            font-size: 1.2rem;
+        }
+
+        form {
+            align-items: start;
+            margin-top: 50%;
+        }
+
+        input[type="text"] {
+            outline: none;
+            border: 0.5px solid black;
+        }
+    }
+}

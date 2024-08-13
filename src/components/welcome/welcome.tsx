@@ -10,7 +10,7 @@ function Welcome() {
 
     const [message, showMessage] = useState(false);
 
-    const { websocket } = useContext(AppContext);
+    const { websocket } = useContext(AppContext); 
 
     const buttonVariants = {
         hover: {

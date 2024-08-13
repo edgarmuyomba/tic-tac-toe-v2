@@ -52,3 +52,23 @@ div.container {
 div.container::before {
     @include base.background('../../assets/pattern_bg.jpg', 0.4);
 }
+
+@media(max-width: 1024px) {
+    div.container .title {
+        margin-top: 35%;
+    }
+}
+
+@media(max-width: 767px) {
+    div.container {
+
+        .title {
+            margin-top: 100%;
+        }
+
+        .buttons button {
+            width: 10rem;
+            font-size: 1.2rem; 
+        }
+    }
+}

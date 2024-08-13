@@ -16,3 +16,10 @@ div.cell {
     font-weight: bold;
     font-size: 3rem;
 }
+
+@media(max-width: 1024px) {
+    div.container {
+        height: 90%;
+        width: 100%;
+    }
+}
