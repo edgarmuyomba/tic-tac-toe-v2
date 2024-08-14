@@ -6,6 +6,14 @@ div.container {
     align-items: center;
 }
 
+div.loadingContainer {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 @media(max-width: 1024px) {
     div.container {
         height: 50vw;

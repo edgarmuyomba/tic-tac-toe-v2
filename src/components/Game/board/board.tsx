@@ -6,6 +6,7 @@ export default function Board({ board, IsX, yourTurn, setYourTurn, websocket }: 
         if (yourTurn) {
             const element = event.currentTarget;
             var mark = localStorage.getItem("mark");
+            var player_id = localStorage.getItem("player_id");
             if (!(element.textContent === "X" || element.textContent == "O")) {
                 element.textContent = mark;
                 setYourTurn(false);
@@ -13,7 +14,8 @@ export default function Board({ board, IsX, yourTurn, setYourTurn, websocket }: 
                 const newEvent = {
                     type: "play_move",
                     game_id: localStorage.getItem("game_id"),
-                    index: index
+                    index: index,
+                    player_id: player_id
                 }
                 websocket.send(JSON.stringify(newEvent));
             }

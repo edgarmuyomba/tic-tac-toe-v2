@@ -10,6 +10,7 @@ import { GameEvent, Status } from "../../utils/constants";
 import GameOver from "../GameOver/GameOver";
 import { useContext } from "react";
 import { AppContext } from "../../AppContext";
+import { HashLoader } from "react-spinners";
 
 function Game() {
 
@@ -99,7 +100,11 @@ function Game() {
             }
             {
                 loading
-                    ? null
+                    ? (
+                        <div className={styles.loadingContainer}>
+                            <HashLoader color="green" />
+                        </div>
+                    )
                     : (
                         <>
                             <Header IsX={IsX} yourTurn={yourTurn} />

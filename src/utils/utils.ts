@@ -9,6 +9,7 @@ export function handleNewGame(eventData: any, setYourTurn: (turn: boolean) => vo
         if (eventData.mark === 'X') setIsX(true);
         else setIsX(false);
         localStorage.setItem("game_id", eventData.game_id);
+        localStorage.setItem("player_id", eventData.player_id);
         setLoading(false);
     }, 1500);
 }

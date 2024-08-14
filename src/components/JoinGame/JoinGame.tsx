@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import styles from "./styles.module.scss";
 import { useNavigate } from "react-router-dom";
 import Message from "../Message/Message";
@@ -36,7 +36,7 @@ function JoinGame() {
                     Please enter the game id
                 </p>
                 <p className={styles.subtext}>
-                    ( A game ID is made up of 6 unique characters )
+                    A game ID is made up of 8 unique characters 
                 </p>
             </div>
             <form onSubmit={handleFormSubmit} action="">
