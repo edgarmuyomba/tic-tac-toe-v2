@@ -1,8 +1,16 @@
-# React + Vite
+# TicTacToe
+This is the front-end implementation of the classic two player game TicTacToe ( X-O ) with a major focus on real-time two player functionality. It also offers the usual ability to play against an AI agent over a real-time connection. Check out the backend server [here](https://github.com/edgarmuyomba/tictactoeGameServer).
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Features
+- Create a new game
+- Join an existing game session
+- Play against AI agent
 
-Currently, two official plugins are available:
+## Preview
+![image1](./screenshots/image.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Built With
+- React
+- Typescript
+- [SCSS](https://sass-lang.com/guide/)
+- [Framer Motion](https://www.framer.com/motion/)
