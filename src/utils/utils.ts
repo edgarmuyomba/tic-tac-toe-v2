@@ -1,6 +1,4 @@
-import { useContext } from "react";
 import { GameEvent } from "./constants";
-import { AppContext } from "../components/App/App";
 
 export function handleNewGame(eventData: any, setYourTurn: (turn: boolean) => void, setLoading: (loading: boolean) => void, setIsX: (IsX: boolean) => void) {
     setTimeout(() => {
@@ -38,19 +36,6 @@ export function handleGameEvents(eventData: any, event: GameEvent, setBoard: (ar
             setTimeout(() => {
                 setBoard(eventData.game_state);
             }, 500);
-            break;
-        case GameEvent.Error:
-            // const context = useContext(AppContext);
-            // if (!context) {
-            //     throw new Error("Not in a context");
-            // }
-
-            // const { setError, setErrorMessage } = context;
-            // setErrorMessage(eventData.message);
-            // setError(true)
-            // setTimeout(() => {
-            //     setError(false);
-            // }, 3000)
             break;
         case GameEvent.Join:
             setTimeout(() => {

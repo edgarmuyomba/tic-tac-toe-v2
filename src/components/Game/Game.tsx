@@ -1,4 +1,4 @@
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import Board from "./board/board";
 import Header from "./header/header";
 import styles from "./styles.module.scss";
@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Footer from "./Footer/Footer";
 import { handleGameEvents, handleNewGame, handlePlayMove } from "../../utils/utils";
 import Message from "../Message/Message";
-import { GameEvent, Status } from "../../utils/constants";
+import { GameEvent } from "../../utils/constants";
 import GameOver from "../GameOver/GameOver";
 import { useContext } from "react";
 import { HashLoader } from "react-spinners";
@@ -21,7 +21,7 @@ function Game() {
     if (!context) {
         throw new Error("Not in a context");
     }
-    const { websocket, error } = context;
+    const { websocket, error, setError, setErrorMessage } = context;
 
     const [loading, setLoading] = useState(true);
 
@@ -32,6 +32,8 @@ function Game() {
     const [gameEvent, setGameEvent] = useState<GameEvent>(GameEvent.Error);
     const [gameOver, setGameOver] = useState(false);
     const [eventData, setEventData] = useState<any>();
+
+    const navigate = useNavigate();
 
     useEffect(() => {
 
@@ -76,8 +78,13 @@ function Game() {
                     }, 500);
                     break;
                 case "error":
-                    handleGameEvents(_eventData, GameEvent.Error, setBoard);
                     setGameEvent(GameEvent.Error);
+                    setErrorMessage(_eventData.message);
+                    setError(true)
+                    setTimeout(() => {
+                        setError(false);
+                    }, 5000)
+                    navigate('join_game/', { replace: true })
                     break;
 
             }
