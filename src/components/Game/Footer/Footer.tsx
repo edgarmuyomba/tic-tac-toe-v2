@@ -12,7 +12,7 @@ export default function Footer() {
 
     function copyText() {
         navigator.clipboard.writeText(game_id);
-    }
+    } 
 
     return (
         <div className={styles.game_id} onClick={copyText}>

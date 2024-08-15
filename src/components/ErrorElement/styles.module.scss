@@ -1,0 +1,41 @@
+@use '../../base';
+
+div.container {
+    @include base.basic_flex();
+    height: 100%;
+    width: 100%;
+    // border: 1px solid red;
+}
+
+div.message {
+    @include base.basic_flex();
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+
+    .header {
+        font-size: 5rem;
+        font-weight: bold;
+    }
+
+    button {
+        margin-top: 1rem;
+        border-radius: 50px;
+        padding: 0.5rem 1rem;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        border: none;
+        font-size: 0.8rem;
+        cursor: pointer;
+    }
+}
+
+div.image {
+    @include base.basic_flex();
+    height: 100%;
+    width: 50%;
+}
+
+img {
+    // height: 100%;
+    width: 100%;
+}

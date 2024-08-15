@@ -8,6 +8,7 @@ div.game_id {
     grid-template-columns: 80% 20%;
     justify-items: center;
     align-items: center;
+    width: 9rem;
 
     p.text {
         font-size: 0.8rem;
@@ -28,7 +29,7 @@ div.game_id {
     }
 }
 
-@media(max-width: 1014px) {
+@media(max-width: 1014px) { 
     div.game_id {
         p.text {
             font-size: 1.2rem;
