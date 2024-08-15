@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 export default function ErrorElement() {
 
     const [imgLoaded, setImgLoaded] = useState(false);
-
+ 
     useEffect(() => {
         const img = new Image();
         img.onload = () => setImgLoaded(true);
