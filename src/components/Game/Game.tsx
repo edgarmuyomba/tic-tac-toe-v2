@@ -21,7 +21,8 @@ function Game() {
     if (!context) {
         throw new Error("Not in a context");
     }
-    const { websocket, error, setError, setErrorMessage } = context;
+
+    const { websocket, error, setError, setErrorMessage, setAiGame, setMark, setGameId, setPlayerId, mark } = context;
 
     const [loading, setLoading] = useState(true);
 
@@ -36,6 +37,11 @@ function Game() {
     const navigate = useNavigate();
 
     useEffect(() => {
+        console.log(yourTurn);
+        
+    }, [yourTurn])
+
+    useEffect(() => {
 
         if (type === 'new_game') {
 
@@ -43,25 +49,26 @@ function Game() {
 
         } else if (type === 'ai') {
 
-            localStorage.setItem("ai_game", "true");
+            setAiGame(true);
 
             websocket.send(JSON.stringify({ type: "ai" }));
 
         } else {
-
 
             websocket.send(JSON.stringify({ type: "join_game", game_id: type }));
 
         }
         websocket.addEventListener("message", (event: MessageEvent) => {
             const _eventData = JSON.parse(event.data);
+            console.log(_eventData);
+            
             setEventData(_eventData);
             switch (_eventData.type) {
                 case "new_game":
-                    handleNewGame(_eventData, setYourTurn, setLoading, setIsX);
+                    handleNewGame(_eventData, setYourTurn, setLoading, setIsX, setMark, setGameId, setPlayerId);
                     break;
                 case "play_move":
-                    handlePlayMove(_eventData, setBoard, setYourTurn);
+                    handlePlayMove(_eventData, setBoard, setYourTurn, mark);
                     break;
                 case "win":
                     handleGameEvents(_eventData, GameEvent.Win, setBoard);
@@ -84,7 +91,7 @@ function Game() {
                     setTimeout(() => {
                         setError(false);
                     }, 5000)
-                    navigate('join_game/', { replace: true })
+                    navigate('/join_game/', { replace: true })
                     break;
                 case "player_joined":
                     setErrorMessage("A second player has joined the game");

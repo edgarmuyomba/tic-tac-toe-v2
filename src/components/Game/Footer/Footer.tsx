@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./styles.module.scss";
+import { AppContext } from "../../App/App";
 
 export default function Footer() {
 
-    const [game_id, setGameId] = useState("");
+    const context = useContext(AppContext);
 
-    useEffect(() => {
-        const id = localStorage.getItem("game_id");
-        setGameId(id ?? "no id");
-    }, []);
+    if (!context) {
+        throw new Error("Not in context!");
+    }
+
+    const { game_id } = context;
 
     function copyText() {
         navigator.clipboard.writeText(game_id);
