@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { GameEvent } from "./constants";
+import { AppContext } from "../components/App/App";
 
 export function handleNewGame(eventData: any, setYourTurn: (turn: boolean) => void, setLoading: (loading: boolean) => void, setIsX: (IsX: boolean) => void) {
     setTimeout(() => {
@@ -25,29 +27,34 @@ export function handlePlayMove(eventData: any, setBoard: (array: (String | null)
     }, 200);
 }
 
-export function handleGameEvents(eventData: any, event: GameEvent, setBoard: (array: (String | null)[]) => void, showMessage: (message: boolean) => void) {
+export function handleGameEvents(eventData: any, event: GameEvent, setBoard: (array: (String | null)[]) => void) {
     switch (event) {
         case GameEvent.Win:
             setTimeout(() => {
                 setBoard(eventData.game_state);
             }, 500);
-            // setTimeout(() => { 
-            //     displayMessage(showMessage);
-            // }, 500);
             break;
         case GameEvent.Draw:
             setTimeout(() => {
                 setBoard(eventData.game_state);
             }, 500);
-            // setTimeout(() => {
-            //     displayMessage(showMessage);
-            // }, 500);
             break;
         case GameEvent.Error:
+            // const context = useContext(AppContext);
+            // if (!context) {
+            //     throw new Error("Not in a context");
+            // }
+
+            // const { setError, setErrorMessage } = context;
+            // setErrorMessage(eventData.message);
+            // setError(true)
+            // setTimeout(() => {
+            //     setError(false);
+            // }, 3000)
             break;
         case GameEvent.Join:
             setTimeout(() => {
-                displayMessage(showMessage);
+                // displayMessage(showMessage);
             }, 500);
             break;
     }

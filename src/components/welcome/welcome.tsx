@@ -2,15 +2,17 @@ import { Link } from "react-router-dom";
 import styles from "./styles.module.scss";
 import { motion } from "framer-motion";
 import Message from "../Message/Message";
-import { GameEvent, Status } from "../../utils/constants";
-import { useContext, useEffect, useState } from "react";
-import { AppContext } from "../../AppContext";
+import { useContext, useEffect } from "react";
+import { AppContext } from "../App/App";
 
 function Welcome() {
 
-    const [message, showMessage] = useState(false);
+    const context = useContext(AppContext);
 
-    const { websocket } = useContext(AppContext); 
+    if (!context) {
+        throw new Error("Not in a context");
+    }
+    const { websocket, error } = context;
 
     const buttonVariants = {
         hover: {
@@ -28,8 +30,8 @@ function Welcome() {
     return (
         <div className={styles.container}>
             {
-                message ? (
-                    <Message status={Status.Info} message={"Error message"} />
+                error ? (
+                    <Message />
                 ) : null
             }
             <p className={styles.title}>

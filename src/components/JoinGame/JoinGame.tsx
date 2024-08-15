@@ -1,17 +1,19 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useRef } from "react";
 import styles from "./styles.module.scss";
 import { useNavigate } from "react-router-dom";
 import Message from "../Message/Message";
-import { Status } from "../../utils/constants";
-import { AppContext } from "../../AppContext";
+import { AppContext } from "../App/App";
 
 function JoinGame() {
 
-    const { websocket } = useContext(AppContext);
+    const context = useContext(AppContext);
+
+    if (!context) {
+        throw new Error("Not in a context");
+    }
+    const { error } = context;
 
     const inputRef = useRef<HTMLInputElement>(null);
-
-    const [message, showMessage] = useState(false);
 
     const navigate = useNavigate();
 
@@ -27,8 +29,8 @@ function JoinGame() {
     return (
         <div className={styles.container}>
             {
-                message ? (
-                    <Message status={Status.Info} message={"message"} />
+                error ? (
+                    <Message />
                 ) : null
             }
             <div className={styles.header}>
