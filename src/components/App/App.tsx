@@ -15,7 +15,7 @@ export default function App() {
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
-    const websocket = new WebSocket("ws://127.0.0.1:8001/");
+    const websocket = new WebSocket("ws://192.168.119.96:8001/");
 
     return (
         <AppContext.Provider value={{ websocket, error, setError, errorMessage, setErrorMessage }}>

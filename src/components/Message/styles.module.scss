@@ -31,3 +31,15 @@ div.container {
         height: 35px;
     }
 }
+
+@media(max-width: 1024px) {
+    div.container {
+        align-items: center;
+    }
+}
+
+@media(max-width: 767px) {
+    div.container {
+        align-items: center;
+    }
+}

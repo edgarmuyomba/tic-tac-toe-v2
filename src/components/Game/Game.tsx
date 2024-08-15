@@ -1,4 +1,4 @@
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Board from "./board/board";
 import Header from "./header/header";
 import styles from "./styles.module.scss";
@@ -85,6 +85,13 @@ function Game() {
                         setError(false);
                     }, 5000)
                     navigate('join_game/', { replace: true })
+                    break;
+                case "player_joined":
+                    setErrorMessage("A second player has joined the game");
+                    setError(true)
+                    setTimeout(() => {
+                        setError(false);
+                    }, 3000)
                     break;
 
             }
