@@ -21,7 +21,8 @@ function Game() {
     if (!context) {
         throw new Error("Not in a context");
     }
-    const { websocket, error, setError, setErrorMessage } = context;
+
+    const { websocket, error, setError, setErrorMessage, setAiGame, setMark, setGameId, setPlayerId, mark } = context;
 
     const [loading, setLoading] = useState(true);
 
@@ -43,62 +44,75 @@ function Game() {
 
         } else if (type === 'ai') {
 
-            localStorage.setItem("ai_game", "true");
+            setAiGame(true);
 
             websocket.send(JSON.stringify({ type: "ai" }));
 
         } else {
 
-
             websocket.send(JSON.stringify({ type: "join_game", game_id: type }));
 
         }
-        websocket.addEventListener("message", (event: MessageEvent) => {
-            const _eventData = JSON.parse(event.data);
-            setEventData(_eventData);
-            switch (_eventData.type) {
-                case "new_game":
-                    handleNewGame(_eventData, setYourTurn, setLoading, setIsX);
-                    break;
-                case "play_move":
-                    handlePlayMove(_eventData, setBoard, setYourTurn);
-                    break;
-                case "win":
-                    handleGameEvents(_eventData, GameEvent.Win, setBoard);
-                    setGameEvent(GameEvent.Win);
-                    setTimeout(() => {
-                        setGameOver(true);
-                    }, 500);
-                    break;
-                case "draw":
-                    handleGameEvents(_eventData, GameEvent.Draw, setBoard);
-                    setGameEvent(GameEvent.Draw);
-                    setTimeout(() => {
-                        setGameOver(true);
-                    }, 500);
-                    break;
-                case "error":
-                    setGameEvent(GameEvent.Error);
-                    setErrorMessage(_eventData.message);
-                    setError(true)
-                    setTimeout(() => {
-                        setError(false);
-                    }, 5000)
-                    navigate('join_game/', { replace: true })
-                    break;
-                case "player_joined":
-                    setErrorMessage("A second player has joined the game");
-                    setError(true)
-                    setTimeout(() => {
-                        setError(false);
-                    }, 3000)
-                    break;
+    }, [type]);
 
-            }
+    const handleMessage = (event: MessageEvent) => {
+        const _eventData = JSON.parse(event.data);
 
+        setEventData(_eventData);
+        switch (_eventData.type) {
+            case "new_game":
+                handleNewGame(_eventData, setYourTurn, setLoading, setIsX, setMark, setGameId, setPlayerId, setBoard);
+                break;
+            case "play_move":
+                handlePlayMove(_eventData, setBoard, setYourTurn, mark);
+                break;
+            case "win":
+                handleGameEvents(_eventData, GameEvent.Win, setBoard);
+                setGameEvent(GameEvent.Win);
+                setTimeout(() => {
+                    setGameOver(true);
+                }, 500);
+                break;
+            case "draw":
+                handleGameEvents(_eventData, GameEvent.Draw, setBoard);
+                setGameEvent(GameEvent.Draw);
+                setTimeout(() => {
+                    setGameOver(true);
+                }, 500);
+                break;
+            case "error":
+                setGameEvent(GameEvent.Error);
+                setErrorMessage(_eventData.message);
+                setError(true)
+                setTimeout(() => {
+                    setError(false);
+                }, 5000)
+                navigate('/join_game/', { replace: true })
+                break;
+            case "player_joined":
+                setErrorMessage("A second player has joined the game");
+                setError(true)
+                setTimeout(() => {
+                    setError(false);
+                }, 3000)
+                break;
+        }
+    }
 
-        });
-    }, []);
+    websocket.addEventListener("message", handleMessage);
+
+    if (websocket.readyState == WebSocket.CLOSED) {
+        throw new Error();
+    }
+
+    // websocket.onclose = () => { throw new Error(); }
+
+    websocket.addEventListener('close', (event) => {
+        console.log('WebSocket closed:', event);
+        console.log('Code:', event.code);
+        console.log('Reason:', event.reason);
+    });
+
 
     return (
         <div className={styles.container}>

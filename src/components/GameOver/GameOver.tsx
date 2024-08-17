@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GameEvent } from "../../utils/constants";
 import styles from "./styles.module.scss";
 import snoopy_winner from "../../assets/snoopy_winner.gif";
@@ -8,22 +8,21 @@ import bear_loss from "../../assets/bear_loss.gif";
 import snoopy_draw from "../../assets/snoopy_draw.gif";
 import bear_draw from "../../assets/bear_draw.gif";
 import { Link } from "react-router-dom";
+import { AppContext } from "../App/App";
 
 export default function GameOver({ gameEvent, eventData, display }: { gameEvent: GameEvent, eventData: any, display: boolean }) {
 
     const [style, setStyle] = useState<string>("");
-    const [mark, setMark] = useState<String | null>(null);
     const [gif, setGif] = useState<string>("");
     const [message, setMessage] = useState("");
 
-    useEffect(() => {
-        const player_mark = localStorage.getItem("mark");
-        // const player_mark = "X";
+    const context = useContext(AppContext);
 
-        if (player_mark) {
-            setMark(player_mark);
-        }
-    }, []);
+    if (!context) {
+        throw new Error("Not in context!");
+    }
+
+    const { mark } = context;
 
     useEffect(() => {
         if (!mark) return;

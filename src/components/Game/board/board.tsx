@@ -1,22 +1,31 @@
+import { useContext } from 'react';
 import styles from './styles.module.scss';
+import { AppContext } from '../../App/App';
 
 export default function Board({ board, IsX, yourTurn, setYourTurn, websocket }: { board: (String | null)[], IsX: boolean, yourTurn: boolean, setYourTurn: (turn: boolean) => void, websocket: WebSocket }) {
+
+    const context = useContext(AppContext);
+
+    if (!context) {
+        throw new Error("Not in context!");
+    }
+
+    const { mark, player_id, game_id } = context;
 
     const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         if (yourTurn) {
             const element = event.currentTarget;
-            var mark = localStorage.getItem("mark");
-            var player_id = localStorage.getItem("player_id");
             if (!(element.textContent === "X" || element.textContent == "O")) {
                 element.textContent = mark;
                 setYourTurn(false);
                 const index = parseInt(element.dataset.index!);
                 const newEvent = {
                     type: "play_move",
-                    game_id: localStorage.getItem("game_id"),
+                    game_id: game_id,
                     index: index,
                     player_id: player_id
                 }
+                
                 websocket.send(JSON.stringify(newEvent));
             }
         } else {
