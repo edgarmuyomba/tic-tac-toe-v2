@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { Outlet } from "react-router-dom"
 
 interface AppContextType {
@@ -28,12 +28,7 @@ export default function App() {
     const [player_id, setPlayerId] = useState("");
     const [game_id, setGameId] = useState("");
 
-    const websocket = new WebSocket("ws://192.168.100.9:8001/");
-
-    useEffect(() => {
-        console.log(`Mark - ${mark}, PlayerID - ${player_id}`);
-        
-    }, [mark, player_id])
+    const websocket = new WebSocket("ws://127.0.0.1:8001/");
 
     return (
         <AppContext.Provider value={{ websocket, error, setError, errorMessage, setErrorMessage, mark, setMark, ai_game, setAiGame, player_id, setPlayerId, game_id, setGameId }}>

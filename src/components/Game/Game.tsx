@@ -37,11 +37,6 @@ function Game() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log(yourTurn);
-        
-    }, [yourTurn])
-
-    useEffect(() => {
 
         if (type === 'new_game') {
 
@@ -58,54 +53,51 @@ function Game() {
             websocket.send(JSON.stringify({ type: "join_game", game_id: type }));
 
         }
-        websocket.addEventListener("message", (event: MessageEvent) => {
-            const _eventData = JSON.parse(event.data);
-            console.log(_eventData);
-            
-            setEventData(_eventData);
-            switch (_eventData.type) {
-                case "new_game":
-                    handleNewGame(_eventData, setYourTurn, setLoading, setIsX, setMark, setGameId, setPlayerId);
-                    break;
-                case "play_move":
-                    handlePlayMove(_eventData, setBoard, setYourTurn, mark);
-                    break;
-                case "win":
-                    handleGameEvents(_eventData, GameEvent.Win, setBoard);
-                    setGameEvent(GameEvent.Win);
-                    setTimeout(() => {
-                        setGameOver(true);
-                    }, 500);
-                    break;
-                case "draw":
-                    handleGameEvents(_eventData, GameEvent.Draw, setBoard);
-                    setGameEvent(GameEvent.Draw);
-                    setTimeout(() => {
-                        setGameOver(true);
-                    }, 500);
-                    break;
-                case "error":
-                    setGameEvent(GameEvent.Error);
-                    setErrorMessage(_eventData.message);
-                    setError(true)
-                    setTimeout(() => {
-                        setError(false);
-                    }, 5000)
-                    navigate('/join_game/', { replace: true })
-                    break;
-                case "player_joined":
-                    setErrorMessage("A second player has joined the game");
-                    setError(true)
-                    setTimeout(() => {
-                        setError(false);
-                    }, 3000)
-                    break;
+    }, [type]);
 
-            }
+    websocket.addEventListener("message", (event: MessageEvent) => {
+        const _eventData = JSON.parse(event.data);
 
-
-        });
-    }, []);
+        setEventData(_eventData);
+        switch (_eventData.type) {
+            case "new_game":
+                handleNewGame(_eventData, setYourTurn, setLoading, setIsX, setMark, setGameId, setPlayerId);
+                break;
+            case "play_move":
+                handlePlayMove(_eventData, setBoard, setYourTurn, mark);
+                break;
+            case "win":
+                handleGameEvents(_eventData, GameEvent.Win, setBoard);
+                setGameEvent(GameEvent.Win);
+                setTimeout(() => {
+                    setGameOver(true);
+                }, 500);
+                break;
+            case "draw":
+                handleGameEvents(_eventData, GameEvent.Draw, setBoard);
+                setGameEvent(GameEvent.Draw);
+                setTimeout(() => {
+                    setGameOver(true);
+                }, 500);
+                break;
+            case "error":
+                setGameEvent(GameEvent.Error);
+                setErrorMessage(_eventData.message);
+                setError(true)
+                setTimeout(() => {
+                    setError(false);
+                }, 5000)
+                navigate('/join_game/', { replace: true })
+                break;
+            case "player_joined":
+                setErrorMessage("A second player has joined the game");
+                setError(true)
+                setTimeout(() => {
+                    setError(false);
+                }, 3000)
+                break;
+        }
+    });
 
     return (
         <div className={styles.container}>
