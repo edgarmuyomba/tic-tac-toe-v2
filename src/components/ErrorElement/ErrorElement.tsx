@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import errorImage from '../../assets/error_image.jpg';
 import { Blurhash } from 'react-blurhash';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function ErrorElement() {
 
@@ -13,6 +13,13 @@ export default function ErrorElement() {
         img.onload = () => setImgLoaded(true);
         img.src = errorImage;
     }, [errorImage])
+
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate('/', { replace: true });
+        window.location.reload();
+    }
     
     return (
         <div className={styles.container}>
@@ -23,11 +30,9 @@ export default function ErrorElement() {
                 <p className={styles.sub}>
                     Something went wrong
                 </p>
-                <Link to="/">
-                    <button>
+                    <button onClick={handleClick}>
                         Back to home
                     </button>
-                </Link>
             </div>
             <div className={styles.image}>
                 {

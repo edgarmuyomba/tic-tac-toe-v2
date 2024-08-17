@@ -101,6 +101,18 @@ function Game() {
 
     websocket.addEventListener("message", handleMessage);
 
+    if (websocket.readyState == WebSocket.CLOSED) {
+        throw new Error();
+    }
+
+    // websocket.onclose = () => { throw new Error(); }
+
+    websocket.addEventListener('close', (event) => {
+        console.log('WebSocket closed:', event);
+        console.log('Code:', event.code);
+        console.log('Reason:', event.reason);
+    });
+
 
     return (
         <div className={styles.container}>
