@@ -96,6 +96,14 @@ function Game() {
                     setError(false);
                 }, 3000)
                 break;
+            case "player_left":
+                setErrorMessage("The other player has left the game!");
+                setError(true);
+                navigate('/', { replace: true });
+                setTimeout(() => {
+                    setError(false);
+                }, 5000)
+                break;
         }
     }
 
