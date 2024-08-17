@@ -12,6 +12,11 @@ div.container {
         margin-top: 17%;
     }
 
+    .connecting {
+        border-bottom: 1px solid black;
+        padding: 1rem 3rem;
+    }
+
     .buttons {
         @include base.basic_flex();
         gap: 1rem;

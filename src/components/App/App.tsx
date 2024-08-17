@@ -15,6 +15,8 @@ interface AppContextType {
     setPlayerId: React.Dispatch<React.SetStateAction<string>>;
     game_id: string;
     setGameId: React.Dispatch<React.SetStateAction<string>>;
+    active: boolean;
+    setActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -27,11 +29,12 @@ export default function App() {
     const [ai_game, setAiGame] = useState(false);
     const [player_id, setPlayerId] = useState("");
     const [game_id, setGameId] = useState("");
+    const [active, setActive] = useState(false);
 
-    const websocket = new WebSocket("ws://192.168.100.19:8001/");
+    const websocket = new WebSocket("wss://rh69rj62-8001.eun1.devtunnels.ms/");
 
     return (
-        <AppContext.Provider value={{ websocket, error, setError, errorMessage, setErrorMessage, mark, setMark, ai_game, setAiGame, player_id, setPlayerId, game_id, setGameId }}>
+        <AppContext.Provider value={{ websocket, error, setError, errorMessage, setErrorMessage, mark, setMark, ai_game, setAiGame, player_id, setPlayerId, game_id, setGameId, active, setActive }}>
             <Outlet />
         </AppContext.Provider>
     )
