@@ -38,7 +38,7 @@ function JoinGame() {
                     Please enter the game id
                 </p>
                 <p className={styles.subtext}>
-                    A game ID is made up of 8 unique characters 
+                    A game ID is made up of 8 unique characters
                 </p>
             </div>
             <form onSubmit={handleFormSubmit} action="">

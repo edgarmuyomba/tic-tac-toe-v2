@@ -28,7 +28,7 @@ export default function App() {
     const [player_id, setPlayerId] = useState("");
     const [game_id, setGameId] = useState("");
 
-    const websocket = new WebSocket("ws://127.0.0.1:8001/");
+    const websocket = new WebSocket("ws://192.168.100.19:8001/");
 
     return (
         <AppContext.Provider value={{ websocket, error, setError, errorMessage, setErrorMessage, mark, setMark, ai_game, setAiGame, player_id, setPlayerId, game_id, setGameId }}>

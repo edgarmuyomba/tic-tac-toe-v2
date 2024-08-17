@@ -55,13 +55,13 @@ function Game() {
         }
     }, [type]);
 
-    websocket.addEventListener("message", (event: MessageEvent) => {
+    const handleMessage = (event: MessageEvent) => {
         const _eventData = JSON.parse(event.data);
 
         setEventData(_eventData);
         switch (_eventData.type) {
             case "new_game":
-                handleNewGame(_eventData, setYourTurn, setLoading, setIsX, setMark, setGameId, setPlayerId);
+                handleNewGame(_eventData, setYourTurn, setLoading, setIsX, setMark, setGameId, setPlayerId, setBoard);
                 break;
             case "play_move":
                 handlePlayMove(_eventData, setBoard, setYourTurn, mark);
@@ -97,7 +97,10 @@ function Game() {
                 }, 3000)
                 break;
         }
-    });
+    }
+
+    websocket.addEventListener("message", handleMessage);
+
 
     return (
         <div className={styles.container}>
