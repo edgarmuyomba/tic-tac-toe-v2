@@ -14,3 +14,4 @@ This is the front-end implementation of the classic two player game TicTacToe ( 
 - Typescript
 - [SCSS](https://sass-lang.com/guide/)
 - [Framer Motion](https://www.framer.com/motion/)
+- [WebSocket API](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API#:~:text=The%20WebSocket%20API%20is%20an,the%20server%20for%20a%20reply.)
