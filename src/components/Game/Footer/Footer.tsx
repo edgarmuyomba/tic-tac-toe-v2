@@ -12,7 +12,7 @@ export default function Footer() {
 
     const { game_id } = context;
 
-    function copyText() {
+    function copyText() { 
         navigator.clipboard.writeText(game_id);
     } 
 
