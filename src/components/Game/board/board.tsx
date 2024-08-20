@@ -1,8 +1,9 @@
 import { useContext } from 'react';
 import styles from './styles.module.scss';
 import { AppContext } from '../../App/App';
+import WebSocketHandler from '../../../utils/WebSocketHandler';
 
-export default function Board({ board, IsX, yourTurn, setYourTurn, websocket }: { board: (String | null)[], IsX: boolean, yourTurn: boolean, setYourTurn: (turn: boolean) => void, websocket: WebSocket }) {
+export default function Board({ board, IsX, yourTurn, setYourTurn, websocket }: { board: (String | null)[], IsX: boolean, yourTurn: boolean, setYourTurn: (turn: boolean) => void, websocket: WebSocketHandler }) {
 
     const context = useContext(AppContext);
 
@@ -26,7 +27,7 @@ export default function Board({ board, IsX, yourTurn, setYourTurn, websocket }: 
                     player_id: player_id
                 }
                 
-                websocket.send(JSON.stringify(newEvent));
+                websocket.sendMessage(JSON.stringify(newEvent));
             }
         } else {
             // handle error, not your turn

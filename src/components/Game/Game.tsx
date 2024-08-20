@@ -40,17 +40,17 @@ function Game() {
 
         if (type === 'new_game') {
 
-            websocket.send(JSON.stringify({ type: "new_game" }));
+            websocket.sendMessage(JSON.stringify({ type: "new_game" }));
 
         } else if (type === 'ai') {
 
             setAiGame(true);
 
-            websocket.send(JSON.stringify({ type: "ai" }));
+            websocket.sendMessage(JSON.stringify({ type: "ai" }));
 
         } else {
 
-            websocket.send(JSON.stringify({ type: "join_game", game_id: type }));
+            websocket.sendMessage(JSON.stringify({ type: "join_game", game_id: type }));
 
         }
     }, [type]);
@@ -107,19 +107,7 @@ function Game() {
         }
     }
 
-    websocket.addEventListener("message", handleMessage);
-
-    if (websocket.readyState == WebSocket.CLOSED) {
-        throw new Error();
-    }
-
-    // websocket.onclose = () => { throw new Error(); }
-
-    websocket.addEventListener('close', (event) => {
-        console.log('WebSocket closed:', event);
-        console.log('Code:', event.code);
-        console.log('Reason:', event.reason);
-    });
+    websocket.onMessage(handleMessage);
 
 
     return (
