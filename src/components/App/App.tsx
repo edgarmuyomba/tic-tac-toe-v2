@@ -30,7 +30,7 @@ export default function App() {
     const [game_id, setGameId] = useState("");
 
     // const websocket = new WebSocket("ws://129.168.100.19:8001/");
-    const websocket = new WebSocketHandler("ws://127.0.0.1:8001/");
+    const websocket = new WebSocketHandler("wss://tictactoegameserver.onrender.com/");
 
 
     return (
